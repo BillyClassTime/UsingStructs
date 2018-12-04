@@ -52,6 +52,11 @@ namespace UsingStructs
                 Strength = 3
             };
 
+            Console.WriteLine($"Name:{coffee1.Name}");
+            Console.WriteLine($"Bean:{coffee1.Bean}");
+            Console.WriteLine($"Country of Origin:{coffee1.CountryOFOrigin}");
+            Console.WriteLine($"Strength:{coffee1.Strength}");
+
             var beverageList = ArrayListExamples(coffee1, coffee2, coffee3);
             foreach (Coffee item in beverageList)
             {
@@ -59,12 +64,7 @@ namespace UsingStructs
                 Console.WriteLine($"Bean:{item.Bean}");
                 Console.WriteLine($"Country of Origin:{item.CountryOFOrigin}");
                 Console.WriteLine($"Strength:{item.Strength}");
-
             }
-            Console.WriteLine($"Name:{coffee1.Name}");
-            Console.WriteLine($"Bean:{coffee1.Bean}");
-            Console.WriteLine($"Country of Origin:{coffee1.CountryOFOrigin}");
-            Console.WriteLine($"Strength:{coffee1.Strength}");
             Console.ReadLine();
         }
         private static ArrayList ArrayListExamples(Coffee coffee1, Coffee coffee2, Coffee coffee3)
