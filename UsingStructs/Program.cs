@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using System.Linq;
 namespace UsingStructs
 {
     class Program
@@ -8,11 +8,13 @@ namespace UsingStructs
         static void Main()
         {
             //Basic Struct
-            Program0.Main0();
+            //Program0.Main0();
             //Indexer
-            Program1.Main1();
+            //Program1.Main1();
             //Indexer with days example
-            Program2.Main2();
+            //Program2.Main2();
+            // Query Collection
+            Program3.Main3();
         }
     }
     #region Basic Struct    
@@ -140,5 +142,46 @@ namespace UsingStructs
         }
     }
     #endregion
+    #region Hashtable Collection example
+    static class Program3
+    {
+        public static void Main3()
+        {
+            var prices = new Hashtable
+            {
+                { "Cafè au Lait", 1.99M },
+                { "Caffe Americano", 1.89M },
+                { "Cafè Mocha", 2.99M },
+                { "Capchino", 2.98M },
+                { "Expresso", 1.49M },
+                { "Expresso Romano", 1.59M },
+                { "English Tea", 1.69M },
+                { "Juice", 2.89M }
+            };
 
+            //Select all the drinks hat cost less than 2.00, and other them by cost.
+            var bargains =
+                from string drinks in prices.Keys
+                where (Decimal)prices[drinks] < 2.0M
+                orderby prices[drinks] ascending
+                select drinks;
+            foreach (string bargain in bargains)
+            {
+                Console.WriteLine(bargain);
+            }
+
+            var bargains1 =
+                from string drinks in prices.Keys
+                orderby prices[drinks] ascending
+                select drinks;
+
+            Console.WriteLine($"The cheapest drink is: {bargains1.FirstOrDefault()}");
+            Console.WriteLine($"The most expansive drink is:{bargains1.Last()}");
+            Console.WriteLine($"The maximun is:{bargains1.Max()}");
+            Console.WriteLine($"The minimun is:{bargains1.Min()}");
+
+            Console.ReadLine();
+        }
+    }
+    #endregion
 }
