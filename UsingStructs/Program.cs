@@ -159,6 +159,12 @@ namespace UsingStructs
                 { "Juice", 2.89M }
             };
 
+            // Iterate of Hashtable collection
+            foreach (DictionaryEntry de in prices)
+            {
+                Console.WriteLine($"Key:{de.Key} - Value:{de.Value}");
+            }
+
             //Select all the drinks hat cost less than 2.00, and other them by cost.
             var bargains =
                 from string drinks in prices.Keys
@@ -169,7 +175,7 @@ namespace UsingStructs
             {
                 Console.WriteLine(bargain);
             }
-
+            // Select all drinks orderder by keys
             var bargains1 =
                 from string drinks in prices.Keys
                 orderby prices[drinks] ascending
