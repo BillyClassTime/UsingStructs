@@ -7,12 +7,12 @@ namespace UsingStructs
     {
         static void Main()
         {
-            //Basic Struct
-            //Program0.Main0();
+            //Basic Struct 
+            Program0.Main0();
             //Indexer
-            //Program1.Main1();
+            Program1.Main1();
             //Indexer with days example
-            //Program2.Main2();
+            Program2.Main2();
             // Query Collection
             Program3.Main3();
         }
@@ -26,7 +26,7 @@ namespace UsingStructs
         public int Strength { get; set; }
 
     }
-    
+
     static class Program0
     {
         static public void Main0()
@@ -111,7 +111,7 @@ namespace UsingStructs
     #region Indexer with days
     struct Days // Example of Indexer
     {
-        private readonly string[] days; 
+        private readonly string[] days;
 
         public string this[int index]
         {
