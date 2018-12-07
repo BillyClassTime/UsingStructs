@@ -18,13 +18,21 @@ namespace UsingStructs
         }
     }
     #region Basic Struct    
-    struct Coffee
+    struct Coffee :IComparable
     {
         public string Name { get; set; }
         public string Bean { get; set; }
         public string CountryOFOrigin { get; set; }
         public int Strength { get; set; }
 
+        // Implement I Comparable only if you use .Sort in your collection
+        public int CompareTo(object obj)
+        {
+            var coffe2 =  (Coffee)obj;
+            return String.Compare(this.Name, coffe2.Name);
+        }
+
+    
     }
 
     static class Program0
@@ -54,28 +62,40 @@ namespace UsingStructs
                 Strength = 3
             };
 
+
+            var coffee4 = new Coffee
+            {
+                Name = "Capuchino",
+                Bean = "Arabica",
+                CountryOFOrigin = "Mexico",
+                Strength = 3
+            };
+
             Console.WriteLine($"Name:{coffee1.Name}");
             Console.WriteLine($"Bean:{coffee1.Bean}");
             Console.WriteLine($"Country of Origin:{coffee1.CountryOFOrigin}");
             Console.WriteLine($"Strength:{coffee1.Strength}");
-
-            var beverageList = ArrayListExamples(coffee1, coffee2, coffee3);
+            Console.WriteLine(new string('=', 30));
+            var beverageList = ArrayListExamples(coffee1, coffee2, coffee3,coffee4);
+            beverageList.Sort(); // Ordena el array list
             foreach (Coffee item in beverageList)
             {
                 Console.WriteLine($"Name:{item.Name}");
                 Console.WriteLine($"Bean:{item.Bean}");
                 Console.WriteLine($"Country of Origin:{item.CountryOFOrigin}");
                 Console.WriteLine($"Strength:{item.Strength}");
+                Console.WriteLine(new string('=', 30));
             }
             Console.ReadLine();
         }
-        private static ArrayList ArrayListExamples(Coffee coffee1, Coffee coffee2, Coffee coffee3)
+        private static ArrayList ArrayListExamples(Coffee coffee1, Coffee coffee2, Coffee coffee3,Coffee coffee4)
         {
             var beverages = new ArrayList
             {
                 coffee1,
                 coffee2,
-                coffee3
+                coffee3,
+                coffee4
             };
             return beverages;
         }
@@ -100,11 +120,12 @@ namespace UsingStructs
             var firstDrink = myMenu.beverages[0];
             Console.WriteLine($"Beverages:{firstDrink}");
             Console.WriteLine($"Beverages1:{myMenu.beverages[1]}");
-
+            Console.WriteLine(new string('=', 30));
             foreach (string item in myMenu.beverages)
             {
                 Console.WriteLine($"Item:{item}");
             }
+            Console.WriteLine(new string('=', 30));
         }
     }
     #endregion
@@ -134,10 +155,12 @@ namespace UsingStructs
             //=================
             //using and indexer 
             var myDays = new Days(0);
+            Console.WriteLine(new string('=', 30));
             for (int i = 0; i < myDays.Length; i++)
             {
                 Console.WriteLine($"Day-{i}:{myDays[i]}");
             }
+            Console.WriteLine(new string('=', 30));
             //=================
         }
     }
@@ -174,13 +197,14 @@ namespace UsingStructs
             foreach (string bargain in bargains)
             {
                 Console.WriteLine(bargain);
+                Console.WriteLine(new string('=', 30));
             }
             // Select all drinks orderder by keys
             var bargains1 =
                 from string drinks in prices.Keys
                 orderby prices[drinks] ascending
                 select drinks;
-
+            Console.WriteLine(new string('=', 30));
             Console.WriteLine($"The cheapest drink is: {bargains1.FirstOrDefault()}");
             Console.WriteLine($"The most expansive drink is:{bargains1.Last()}");
             Console.WriteLine($"The maximun is:{bargains1.Max()}");
